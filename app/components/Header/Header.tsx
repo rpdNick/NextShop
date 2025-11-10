@@ -6,7 +6,7 @@ import HeaderNavbar from '../Header/HeaderNavbar';
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchBar from '../SearchBar/SearchBar';
-import { Heart, User, ShoppingCart } from 'lucide-react';
+import { Heart, User, Handbag } from 'lucide-react';
 import LoginModal from '../Modals/sign_in';
 import RegisterModal from '../Modals/sign_up';
 import { useModal } from '../Modal/ModalContext';
@@ -103,7 +103,7 @@ export default function Header() {
                   </div>
                   <div>
                     <Link href="/" className="shop_cart flex items-center">
-                      <ShoppingCart className="size={24} text-gray-400" />
+                      <Handbag className="size={24} text-gray-400" />
                     </Link>
                   </div>
                 </div>

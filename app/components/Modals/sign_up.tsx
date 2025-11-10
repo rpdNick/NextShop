@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase/config';
 
 interface RegisterModalProps {
   onClose: () => void;
@@ -9,13 +11,33 @@ interface RegisterModalProps {
 }
 
 export default function RegisterModal({ onClose, onShowLogin }: RegisterModalProps) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSignUp = async () => {
+    setFormError(null);
+    setLoading(true);
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // console.log('User created successfully:', userCredential.user.email);
+      
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      onClose();
+    } catch (error: any) {
+      // console.error('Error creating user:', error);
+      setFormError(error?.message ?? 'Failed to sign up. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -23,9 +45,7 @@ export default function RegisterModal({ onClose, onShowLogin }: RegisterModalPro
       return;
     }
 
-    // Тут буде логіка реєстрації
-    console.log('Register data:', { firstName, lastName, email, password });
-    onClose();
+    await handleSignUp();
   };
 
   const handleLoginClick = () => {
@@ -42,21 +62,6 @@ export default function RegisterModal({ onClose, onShowLogin }: RegisterModalPro
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                Name
-              </label>
-              <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Name" required />
-            </div>
-            <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                Surname
-              </label>
-              <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Surname" required />
-            </div>
-          </div>
-
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
               Email
@@ -78,8 +83,12 @@ export default function RegisterModal({ onClose, onShowLogin }: RegisterModalPro
             <input type="password" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Confirm password" required />
           </div>
 
-          <button type="submit" className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors cursor-pointer">
-            Sign Up
+          {formError && (
+            <p className="text-sm text-red-600">{formError}</p>
+          )}
+
+          <button type="submit" disabled={loading} className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
+            {loading ? 'Signing Up...' : 'Sign Up'}
           </button>
         </form>
 
