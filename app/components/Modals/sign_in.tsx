@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase/config';
 
 interface LoginModalProps {
   onClose: () => void;
@@ -11,12 +13,28 @@ interface LoginModalProps {
 export default function LoginModal({ onClose, onShowRegister }: LoginModalProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSignIn = async () => {
+    setFormError(null);
+    setLoading(true);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setEmail('');
+      setPassword('');
+      onClose();
+    } catch (error: any) {
+      setFormError(error?.message ?? 'Failed to sign in. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Тут буде логіка входу
-    console.log('Login data:', { email, password });
-    onClose();
+    await handleSignIn();
   };
 
   const handleRegisterClick = () => {
@@ -47,8 +65,12 @@ export default function LoginModal({ onClose, onShowRegister }: LoginModalProps)
             <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Enter your password" required />
           </div>
 
-          <button type="submit" className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors cursor-pointer">
-            Login
+          {formError && (
+            <p className="text-sm text-red-600">{formError}</p>
+          )}
+
+          <button type="submit" disabled={loading} className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
+            {loading ? 'Signing In...' : 'Login'}
           </button>
         </form>
 

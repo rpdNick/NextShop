@@ -22,9 +22,7 @@ export default function RegisterModal({ onClose, onShowLogin }: RegisterModalPro
     setLoading(true);
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      // console.log('User created successfully:', userCredential.user.email);
-      
+      createUserWithEmailAndPassword(auth, email, password);
       setEmail('');
       setPassword('');
       setConfirmPassword('');
