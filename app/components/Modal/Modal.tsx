@@ -23,7 +23,7 @@ export default function Modal({ isOpen, onClose, children, containerId = 'modal-
 
   return createPortal(
     <>
-      <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
+      <div className="modal-backdrop fixed inset-0 bg-black/50 z-40" onClick={onClose} />
       <div className="fixed inset-0 z-50 flex items-center justify-center">
         <div className="mx-4 min-w-xs" onClick={(e) => e.stopPropagation()}>
           {children}

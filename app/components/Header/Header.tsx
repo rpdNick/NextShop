@@ -1,19 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { Dropdown, DropdownButton, DropdownItem, DropdownMenu } from '../dropdown';
-import HeaderNavbar from '../Header/HeaderNavbar';
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchBar from '../SearchBar/SearchBar';
-import { Heart, User, Handbag } from 'lucide-react';
+import { TextAlignJustify, Heart, User, Handbag } from 'lucide-react';
 import LoginModal from '../Modals/sign_in';
 import RegisterModal from '../Modals/sign_up';
 import { useModal } from '../Modal/ModalContext';
+import Navbar from '../Navbar/Navbar';
 
 export default function Header() {
   const [lang, setLang] = useState('EN');
   const { openModal } = useModal();
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const openLogin = () => {
     openModal(({ close }) => (
@@ -38,6 +40,7 @@ export default function Header() {
       />
     ));
   };
+
   return (
     <header>
       <div className="border-b border-b-gray-300">
@@ -68,18 +71,41 @@ export default function Header() {
           <div className="container">
             <div className="flex flex-wrap w-full items-center justify-between">
               <div className="lg:w-1/6 md:w-1/2 w-2/5">
-                <Link href="/" className="flex items-center">
-                  <Image src="/freshcart-logo.svg" alt="Logo" width={160} height={31} />
-                </Link>
+                <div className="flex items-center justify-start gap-2.5">
+                  <button
+                    className="d-none d-lg-block cursor-pointer navbar-toggler"
+                    type="button"
+                    onClick={() => setIsNavbarOpen(true)}
+                  >
+                    <TextAlignJustify className="text-primary" />
+                  </button>
+                  <Link href="/" className="flex items-center">
+                    <Image src="/freshcart-logo.svg" alt="Logo" width={160} height={31} />
+                  </Link>
+                </div>
               </div>
               <div className="lg:w-2/5 hidden lg:block">
                 <SearchBar />
               </div>
               <div className="lg:w-1/5 hidden lg:block">
-                <button type="button" className="btn gap-x-2 bg-transparent text-gray-600 border-gray-300 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-gray-700 hover:border-gray-700 active:bg-gray-700 active:border-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300">
+                <button
+                  type="button"
+                  className="btn gap-x-2 bg-transparent text-gray-600 border-gray-300 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-gray-700 hover:border-gray-700 active:bg-gray-700 active:border-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300"
+                >
                   <span className="flex items-center gap-1">
                     <span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-map-pin"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
                         <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path>
@@ -111,8 +137,11 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <HeaderNavbar />
       </div>
+
+      <AnimatePresence>
+        {isNavbarOpen && <Navbar onClose={() => setIsNavbarOpen(false)} />}
+      </AnimatePresence>
     </header>
   );
 }

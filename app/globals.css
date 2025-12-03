@@ -12,6 +12,35 @@
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
+@theme {
+  --color-primary: #0aad0a;
+  --color-secondary: #889397;
+  --color-success: #198754;
+  --color-danger: #db3030;
+
+  --color-gray-100: #f0f3f2;
+  --color-gray-200: #ecf0ef;
+  --color-gray-300: #dfe2e1;
+  --color-gray-400: #c1c7c6;
+  --color-gray-500: #889397;
+  --color-gray-600: #5c6c75;
+  --color-gray-700: #3d4f58;
+  --color-gray-800: #21313c;
+  --color-gray-900: #001e2b;  
+  
+  --color-light-primary: #ceefce;
+  --color-light-success: #d1e7dd;
+  --color-light-danger: #f8d6d6;
+  --color-light-warning: #fff3cd;
+  --color-light-info: #cce1fe;
+
+  --color-dark-primary: #044504;
+  --color-dark-success: #0a3622;
+  --color-dark-danger: #581313;
+  --color-dark-warning: #664d03;
+  --color-dark-info: #002b63;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
