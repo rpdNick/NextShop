@@ -69,14 +69,14 @@ export default function LoginModal({ onClose, onShowRegister }: LoginModalProps)
             <p className="text-sm text-red-600">{formError}</p>
           )}
 
-          <button type="submit" disabled={loading} className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
+          <button type="submit" disabled={loading} className="w-full btn btn-primary">
             {loading ? 'Signing In...' : 'Login'}
           </button>
         </form>
 
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600 mb-4">Don't have account yet?</p>
-          <button onClick={handleRegisterClick} className="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors cursor-pointer">
+          <button onClick={handleRegisterClick} className="w-full btn btn-secondary">
             Sign up
           </button>
         </div>

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, LogOut } from 'lucide-react';
 
 type NavbarProps = {
   onClose: () => void;
@@ -42,7 +42,16 @@ const Navbar = ({ onClose }: NavbarProps) => {
             Shop
           </button>
           <button className="block w-full text-left text-gray-700 hover:text-primary">
+            Blog
+          </button>
+          <button className="block w-full text-left text-gray-700 hover:text-primary">
+            About us
+          </button>
+          <button className="block w-full text-left text-gray-700 hover:text-primary">
             Contact
+          </button>
+          <button className="block w-full text-left text-gray-700 hover:text-primary">
+            My Account
           </button>
         </nav>
       </motion.div>
