@@ -50,9 +50,6 @@ const Navbar = ({ onClose }: NavbarProps) => {
           <button className="block w-full text-left text-gray-700 hover:text-primary">
             Contact
           </button>
-          <button className="block w-full text-left text-gray-700 hover:text-primary">
-            My Account
-          </button>
         </nav>
       </motion.div>
     </>

@@ -6,7 +6,7 @@ import { Dropdown, DropdownButton, DropdownItem, DropdownMenu } from '../dropdow
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchBar from '../SearchBar/SearchBar';
-import { TextAlignJustify, Heart, User, Handbag } from 'lucide-react';
+import { TextAlignJustify, Heart, CircleUser , Handbag } from 'lucide-react';
 import LoginModal from '../Modals/sign_in';
 import RegisterModal from '../Modals/sign_up';
 import { useModal } from '../Modal/ModalContext';
@@ -119,17 +119,17 @@ export default function Header() {
                 <div className="flex gap-7 items-center justify-end">
                   <div>
                     <Link href="/" className="flex items-center">
-                      <Heart className="size={24} text-gray-400" />
+                      <Heart className="size={24} text-gray-600 hover:text-primary" />
                     </Link>
                   </div>
                   <div>
                     <button onClick={openLogin} className="sign_up flex items-center cursor-pointer">
-                      <User className="size={24} text-gray-400" />
+                      <CircleUser className="size={24} text-gray-600 hover:text-primary" />
                     </button>
                   </div>
                   <div>
                     <Link href="/" className="shop_cart flex items-center">
-                      <Handbag className="size={24} text-gray-400" />
+                      <Handbag className="size={24} text-gray-600 hover:text-primary" />
                     </Link>
                   </div>
                 </div>
