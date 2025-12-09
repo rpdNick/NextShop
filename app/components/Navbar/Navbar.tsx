@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { X, LogOut } from 'lucide-react';
+import { X } from 'lucide-react';
 
 type NavbarProps = {
   onClose: () => void;

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { createPortal } from 'react-dom';
+import { motion } from 'framer-motion';
 
 interface ModalProps {
   isOpen: boolean;
@@ -22,14 +23,19 @@ export default function Modal({ isOpen, onClose, children, containerId = 'modal-
   if (!isOpen || !mounted || !container) return null;
 
   return createPortal(
-    <>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ type: 'tween', duration: 0.3 }}
+    >
       <div className="modal-backdrop fixed inset-0 bg-black/50 z-40" onClick={onClose} />
       <div className="fixed inset-0 z-50 flex items-center justify-center">
         <div className="mx-4 min-w-xs" onClick={(e) => e.stopPropagation()}>
           {children}
         </div>
       </div>
-    </>,
+    </motion.div>,
     container
   );
 }
