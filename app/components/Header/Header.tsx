@@ -6,40 +6,13 @@ import { Dropdown, DropdownButton, DropdownItem, DropdownMenu } from '../dropdow
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchBar from '../SearchBar/SearchBar';
-import { TextAlignJustify, Heart, CircleUser , Handbag } from 'lucide-react';
-import LoginModal from '../Modals/sign_in';
-import RegisterModal from '../Modals/sign_up';
-import { useModal } from '../Modal/ModalContext';
+import { TextAlignJustify, Heart, Handbag } from 'lucide-react';
 import Navbar from '../Navbar/Navbar';
+import UserMenu from './UserMenu';
 
 export default function Header() {
   const [lang, setLang] = useState('EN');
-  const { openModal } = useModal();
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-
-  const openLogin = () => {
-    openModal(({ close }) => (
-      <LoginModal
-        onClose={close}
-        onShowRegister={() => {
-          close();
-          openRegister();
-        }}
-      />
-    ));
-  };
-
-  const openRegister = () => {
-    openModal(({ close }) => (
-      <RegisterModal
-        onClose={close}
-        onShowLogin={() => {
-          close();
-          openLogin();
-        }}
-      />
-    ));
-  };
 
   return (
     <header>
@@ -122,11 +95,7 @@ export default function Header() {
                       <Heart className="size={24} text-gray-600 hover:text-primary" />
                     </Link>
                   </div>
-                  <div>
-                    <button onClick={openLogin} className="sign_up flex items-center cursor-pointer">
-                      <CircleUser className="size={24} text-gray-600 hover:text-primary" />
-                    </button>
-                  </div>
+                  <UserMenu />
                   <div>
                     <Link href="/" className="shop_cart flex items-center">
                       <Handbag className="size={24} text-gray-600 hover:text-primary" />
