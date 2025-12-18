@@ -3,7 +3,7 @@
 import { Fragment, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Listbox, Transition } from '@headlessui/react';
-import { ChevronDown, Check } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchBar from '../SearchBar/SearchBar';
@@ -67,22 +67,8 @@ export default function Header() {
                   </Link>
                 </div>
               </div>
-              <div className="lg:w-2/5 hidden lg:block">
+              <div className="lg:w-3/5 hidden lg:block">
                 <SearchBar />
-              </div>
-              <div className="lg:w-1/5 hidden lg:block">
-                <button type="button" className="btn gap-x-2 bg-transparent text-gray-600 border-gray-300 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-gray-700 hover:border-gray-700 active:bg-gray-700 active:border-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300">
-                  <span className="flex items-center gap-1">
-                    <span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
-                        <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path>
-                      </svg>
-                    </span>
-                    <span>Location</span>
-                  </span>
-                </button>
               </div>
               <div className="flex gap-7 items-center justify-end">
                 <div className="flex gap-7 items-center justify-end">
