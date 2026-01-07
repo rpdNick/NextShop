@@ -1,7 +1,8 @@
 @import 'tailwindcss';
-@import "swiper/css";
-@import "swiper/css/pagination";
-@import "swiper/css/autoplay";
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/autoplay';
+@import './styles/vendor/swiper.css';
 
 :root {
   --background: #ffffff;
@@ -29,8 +30,8 @@
   --color-gray-600: #5c6c75;
   --color-gray-700: #3d4f58;
   --color-gray-800: #21313c;
-  --color-gray-900: #001e2b;  
-  
+  --color-gray-900: #001e2b;
+
   --color-light-primary: #ceefce;
   --color-light-success: #d1e7dd;
   --color-light-danger: #f8d6d6;
@@ -73,6 +74,7 @@ body {
   .btn-primary {
     @apply bg-primary text-white border-primary;
   }
+
   .btn-primary:hover {
     @apply bg-[#099309];
   }
@@ -80,6 +82,7 @@ body {
   .btn-secondary {
     @apply bg-secondary text-white border-secondary;
   }
+
   .btn-secondary:hover {
     @apply bg-[#747d80];
   }
@@ -87,6 +90,7 @@ body {
   .btn-success {
     @apply bg-success text-white border-success;
   }
+
   .btn-success:hover {
     @apply bg-[#157347];
   }
@@ -94,6 +98,7 @@ body {
   .btn-danger {
     @apply bg-danger text-white border-danger;
   }
+
   .btn-danger:hover {
     @apply bg-[#ba2929];
   }

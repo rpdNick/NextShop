@@ -1,0 +1,10 @@
+
+/* Swiper global style */
+:root {
+
+  /* pagination */
+  --swiper-pagination-color: var(--color-black);
+  --swiper-pagination-bullet-size: 8px;
+  --swiper-pagination-bullet-inactive-color: var(--color-gray-900);
+  --swiper-pagination-bottom: 24px;
+}

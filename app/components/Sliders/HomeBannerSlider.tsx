@@ -104,7 +104,7 @@ export default function HomeBannerSlider() {
                   className="object-cover"
                 />
                 {(banner.title || banner.description) && (
-                  <div className="absolute inset-0 flex items-center justify-start bg-black/20">
+                  <div className="absolute inset-0 flex items-center justify-start">
                     <div className="flex flex-col gap-2 md:gap-3 px-4 md:px-6 lg:px-8 xl:px-12 w-full max-w-full sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg">
                       {banner.title && (
                         <h2
