@@ -101,7 +101,7 @@ export default function HomeBannerSlider() {
                   fill
                   priority={index === 0}
                   sizes="100vw"
-                  className="object-cover"
+                  className="object-cover object-left"
                 />
                 {(banner.title || banner.description) && (
                   <div className="absolute inset-0 flex items-center justify-start">
