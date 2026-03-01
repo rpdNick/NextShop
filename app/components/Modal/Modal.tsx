@@ -24,6 +24,7 @@ export default function Modal({ isOpen, onClose, children, containerId = 'modal-
 
   return createPortal(
     <motion.div
+    className="fixed inset-0 z-40"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}

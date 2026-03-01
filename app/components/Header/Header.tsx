@@ -63,26 +63,24 @@ export default function Header() {
                     <TextAlignJustify className="text-primary" />
                   </button>
                   <Link href="/" className="flex items-center">
-                    <Image src="/freshcart-logo.svg" alt="Logo" width={160} height={31} />
+                    <Image src="/images/freshcart-logo.svg" alt="Logo" width={160} height={31} />
                   </Link>
                 </div>
               </div>
               <div className="lg:w-3/5 hidden lg:block">
                 <SearchBar />
               </div>
-              <div className="flex gap-7 items-center justify-end">
-                <div className="flex gap-7 items-center justify-end">
-                  <div>
-                    <Link href="/" className="flex items-center">
-                      <Heart className="size={24} text-gray-600 hover:text-primary" />
-                    </Link>
-                  </div>
-                  <UserMenu />
-                  <div>
-                    <Link href="/" className="shop_cart flex items-center">
-                      <Handbag className="size={24} text-gray-600 hover:text-primary" />
-                    </Link>
-                  </div>
+              <div className="flex gap-7 items-center">
+                <div>
+                  <Link href="/" className="flex items-center">
+                    <Heart className="size={24} text-gray-600 hover:text-primary" />
+                  </Link>
+                </div>
+                <UserMenu />
+                <div>
+                  <Link href="/" className="shop_cart flex items-center">
+                    <Handbag className="size={24} text-gray-600 hover:text-primary" />
+                  </Link>
                 </div>
               </div>
             </div>
